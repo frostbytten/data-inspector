@@ -184,17 +184,17 @@ object Inspector {
             Some(wids.contains(a(1))),
             Some(sids.contains(a(2))),
             if("" != a(3)) {
-              Some(domes.contains(a(3)))
+              Some(domeCheck(a(3), domes))
             } else {
               None
             },
             if("" != a(4)) {
-              Some(domes.contains(a(4)))
+              Some(domeCheck(a(4), domes))
             } else {
               None
             },
             if("" != a(5)) {
-              Some(domes.contains(a(5)))
+              Some(domeCheck(a(5), domes))
             } else {
               None
             })
@@ -205,5 +205,12 @@ object Inspector {
     })
     //println(tf)
     tf.contains(true)
+  }
+
+  def domeCheck(domeId: String, domes: List[String]):Boolean = {
+    val dids = domeId.split('|').toList
+    println(s"DomeIDS: $dids")
+    val tf = dids.map(x => domes.contains(x))
+    ! tf.contains(false)
   }
 }
